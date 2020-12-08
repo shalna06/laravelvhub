@@ -11,17 +11,18 @@
 <link rel='shortcut icon' href='http://localhost/vHub/uploads/logo.jpeg' rel='icon' type='image/x-icon'/ />
 <meta name='identifier-url' content='index.html'/>
 <meta name='revisit-after' content='4 days'>
-<meta name='description' content='Keep user’s favourite YouTube videos />
+<meta name='description' content='Keep user’s favourite YouTube videos'>
 <meta name='classification' content='' />
-<meta name='keywords' content='keep user’s favourite YouTube videos'/>
+<meta name='keywords' content='keep user’s favourite YouTube videos'>
 <meta name='alexa' content='100' />
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name="google-site-verification" content="RYO0S_PoEU6qmOhG4a_wkhm1eOXSi9oq-OhUdqml24s" />
-
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <title>vHub</title> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  
 </head> 
 
 <style> 
@@ -73,11 +74,10 @@ body  {
 <div class='pos'> 
 @foreach($data as $key=>$val)  
 
- 
-
 <iframe width="320" height="240" src="{{ $val->url }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-<a href='{{ route('delete') }}' style='position:absolute;color:white;font-size:20px;' title='Remove your favourite video'><b>x</b></a>
 
+<a href="{{ url('deleted/'.$val->id) }}" style='position:absolute;color:white;font-size:20px;' title='Remove your favourite video'><b>x</b></a>
+<span style='color:white;font-size:20px;cursor: default;'onclick='myFunction({{ $val->id }})'><b>E</b></span>
 @endforeach
 </div>
  
@@ -160,7 +160,27 @@ body  {
       
     </div>
   </div>
+<script>  
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+function myFunction(id) { 
+$ids=id;
 
+
+  $.ajax({
+        url: "edited",
+        type: "post",
+        data: { id : $ids },
+        success: function(res){
+			alert(res);
+            //$("#employees").html(data);
+        }
+    });
+}
+</script>
 </body> 
 
 </html>
