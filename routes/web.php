@@ -19,4 +19,6 @@ Route::post('doregister','RegisterController@doregister')->name('doregister');
 Route::post('logincheck','RegisterController@logincheck')->name('logincheck'); 
 Route::get('fav','RegisterController@fav')->name('fav');
 Route::post('addvideo','RegisterController@addvideo')->name('addvideo'); 
-Route::get('logout','RegisterController@logout')->name('logout');
+Route::get('logout','RegisterController@logout')->name('logout'); 
+Route::get('deleted/{id}', 'RegisterController@deleted')->name('deleted'); 
+Route::post('edited/{id}', 'RegisterController@edited')->name('edited');
