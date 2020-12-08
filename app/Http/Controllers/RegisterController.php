@@ -61,8 +61,7 @@ class RegisterController extends Controller
 	       ->where('username', '=', $user)
 		   ->where('password', '=', $password)
 		   ->first(); 
-		   
-    
+		
 	 if ($us){ 
 	 $userid = $us->id; 
      Session::put('userid', $userid);
@@ -80,5 +79,16 @@ class RegisterController extends Controller
 	 Session::forget('userid');
 	return redirect()->route('login');
 	
+	} 
+	public function deleted($id) { 
+
+	      DB::table('video')->where('id', '=', $id)->delete();
+	      return redirect()->route('fav'); 
+	} 
+	public function edited($id) { 
+echo 'ok';
+	      $data = DB::table('video')->select('*')->where('id', '=', $id)->first(); 
+		 
+	      //return redirect()->route('fav'); 
 	}
 }
