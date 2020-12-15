@@ -21,4 +21,7 @@ Route::get('fav','RegisterController@fav')->name('fav');
 Route::post('addvideo','RegisterController@addvideo')->name('addvideo'); 
 Route::get('logout','RegisterController@logout')->name('logout'); 
 Route::get('deleted/{id}', 'RegisterController@deleted')->name('deleted'); 
-Route::post('edited/{id}', 'RegisterController@edited')->name('edited');
+Route::post('edited', 'RegisterController@edited')->name('edited'); 
+Route::post('updated','RegisterController@updated')->name('updated');  
+Route::get('crop','RegisterController@crop')->name('crop');
+Route::post('crop-image-upload', 'RegisterController@uploadCropImage')->name('crop-image-upload');
