@@ -10,9 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
-<script> 
-	$("div#msg").hide();
-	</script>
+<meta name="_token" content="{{ csrf_token() }}">
+ 
+	
 
 <style>
 body {
@@ -109,7 +109,7 @@ body {
 </head>
 <body>
 <div class="signup-form">
-     <form action = "{{ route('doregister') }}" method="post">
+     <form action = "{{ route('doregister') }}" method="post" enctype="multipart/form-data">
 		<h2>Register</h2>
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
@@ -131,6 +131,9 @@ body {
 		    
         <div class="form-group">
             <input type="text" class="form-control" id='gps' name="location" placeholder="Location" required="required">
+        </div>	 
+        <div class="form-group">
+            <input type="file" class="form-control"  name="file" placeholder="image" required="required">
         </div>		
         <div class="form-group">
 			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
@@ -142,6 +145,7 @@ body {
 	<div class="text-center">Already have an account? <a href="{{ route('login') }}">Sign in</a></div>
 	
 	
-</div>
+</div> 
+
 </body>
 </html>
